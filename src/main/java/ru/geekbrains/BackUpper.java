@@ -6,13 +6,17 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class directoryСreator {
+/**
+ * BackUpper - класс, предназначенный для создания резервного копирования файлов в заданный файл.
+ */
+public class BackUpper {
     private static final Path OUTPUT_BACKUP_DIRECTORY = Path.of("./backup");
 
-    public directoryСreator(){
+    public BackUpper(){
         try {
             Files.createDirectory(OUTPUT_BACKUP_DIRECTORY);
-            System.out.println("Копирование файлов в папку " + '"' + OUTPUT_BACKUP_DIRECTORY + '"' + " завершено.");
+            System.out.println("Копирование файлов в папку " + '"' + OUTPUT_BACKUP_DIRECTORY
+                    + '"' + " успешно завершено.");
         } catch (FileAlreadyExistsException e){
             System.out.println("В данной директории уже создан файл с именем " + '"' + OUTPUT_BACKUP_DIRECTORY + '"');
         } catch (IOException e){
@@ -25,7 +29,7 @@ public class directoryСreator {
 
     public void filesBackUpper(Path path) {
         if (path == null) {
-            System.out.println("Путь не может быть null.");
+            System.out.println("Путь указан некорректно: null.");
             return;
         }
 
@@ -36,7 +40,7 @@ public class directoryСreator {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Ошибка при использовании пути: " + path);
+            System.out.println("Ошибка пути: " + path);
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
